@@ -1,5 +1,7 @@
 Ce dossier est composé de 2 pages dont le but est d'afficher une interface utilisateur à partir d'une API.
-La page index correspond à la page d'accueil et la charactère au détail de chaque personnage.
+Chaque page a son script.
+
+La page "index" correspond à la page d'accueil et la page "charactere" au détail de chaque personnage.
 
 Application révisions des bases html, css et js 
 	En construction
@@ -7,7 +9,7 @@ Application révisions des bases html, css et js
 	- TO DO :
 - Amélioration du front (mise en page du tableau, couleur en fonction des personnages, affichage des icones)
 - Implémentation de nouvelles fonctionnalités dans le script (génération d'une map en fonction de la localisation, utilisation des épisodes)
-- Amélioration de la page "charactère" (Appeler uniquement l'ID concernée, afficher un arbre de liens entre les personnages ...)
+- Amélioration de la page "charactère" (Afficher l'image du perso passé dans l'URL)
 - Pagination (limiter la vue a 5 personnages et changer de pages)
 
 

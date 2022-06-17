@@ -1,22 +1,24 @@
-fetch('https://rickandmortyapi.com/api/character')
-.then(function (response) {
-    return response.json();
-})
-.then(function (data) {
-    console.log(data.info)
-    const characters = data.results
-    characters.forEach(function (character) {
-        const data = Reload(character)
-        console.log(data)
-        document.getElementById("myTable").appendChild(data)
+function ShowPage(page) {
+    fetch('https://rickandmortyapi.com/api/character?page='+page)
+    .then(function (response) {
+        return response.json();
     })
-    // Reload(character)
-})
-.catch(function (err) {
-    console.log(err);
-});
-
-
+    .then(function (data) {
+        console.log(data.info)
+        const characters = data.results
+        characters.forEach(function (character) {
+            const data = Reload(character)
+            console.log(data)
+            document.getElementById("myTable").appendChild(data)
+        })
+        document.getElementById("prev").href = "?page=" + (parseInt(page)-1)
+        document.getElementById("current").innerHTML = page
+        document.getElementById("next").href = (parseInt(page)+1)
+    })
+    .catch(function (err) {
+        console.log(err);
+    });
+}
 
 function Reload(person)   {
 
@@ -30,9 +32,9 @@ function Reload(person)   {
    //td_status.innerHTML = person.status;
     const i = document.createElement('i');
     if (person.status == 'alive') {
-        i.className='fa-solid fa-heart fa-beat';
+        i.className="alive";
     } else {
-        i.className='fa-light fa-skull-crossbones';
+        i.className="dead";
     }
     td_status.appendChild(i);
 
@@ -44,7 +46,7 @@ function Reload(person)   {
     const img = document.createElement('img');
     img.src = person.image;
 
-    a_link.href = "charactere.html?id="+person.id;
+    a_link.href = "charactere.html?id="+person.id+"&name="+person.name;
     a_link.innerHTML = 'More details';
     node.appendChild(td_name);
     node.appendChild(td_status);
@@ -73,9 +75,15 @@ fetch('https://rickandmortyapi.com/api/location')
         console.log(data_location)
         document.getElementById("mydetails_location").appendChild(data_location)
     })
-    // Reload(character)
+
 })
 .catch(function (err) {
     console.log(err);
 });
+
+//pagination
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const page = urlParams.get('page')
+ShowPage(page)
 
